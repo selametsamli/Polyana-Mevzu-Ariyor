@@ -1,3 +1,4 @@
+
 # VueJS Notları
 
 
@@ -152,6 +153,121 @@ new Vue({
     showAlert2: function(event) {
       alert(event.target.value);
     }
+  }
+})
+```
+* v-model='name' input içerisinde kullanılırsa her yerdeki name değişkenini değiştirir.
+
+
+#### computed vs methods
+* methods --> alakalı olsun olmasın herhangi bir değerin değişmesi durumda çalışır bu durumun önüne computed kullanarak geçilir 
+
+```html
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<div id='app'>
+  <button v-on:click='counter++'>Arttır</button>
+  <button v-on:click='counter--'>azalt</button>
+  <button v-on:click='secondCounter++'>2. Counter arttır</button>
+
+  <p>Counter: {{counter}} | {{secondCounter}}</p>
+  <p>{{result()}} || {{output }}</p>
+
+</div>
+
+
+```
+
+```javascript
+new Vue({
+  el: '#app',
+  data: {
+    counter: 0,
+    secondCounter:0,
+  },
+  methods: {
+    result: function() {
+    		console.log('Result çalıştı');
+				return this.counter >10 ? "10'dan büyüktür" : "10'dan küçüktür"
+    },
+  },
+  computed :{
+  	output : function(){
+    	console.log('Output çalıştı')
+    	return this.secondCounter >10 ? "10'dan büyüktür" : "10'dan küçüktür"
+    }
+  }
+})
+
+
+```
+
+#### Watch
+
+* Computed  asenkron olarak çalışmaz,
+* watch ile bu işlemi yaparız, watch asenkron olarak çalışır.
+
+```html
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<div id='app'>
+  <button v-on:click='counter++'>Arttır</button>
+  <p>Counter: {{counter}}</p>
+</div>
+```
+
+```javascript
+new Vue({
+  el: '#app',
+  data: {
+    counter: 0,
+  },
+  watch : {
+  	counter : function(value){
+    	vm = this;
+    	setTimeout(function(){
+      	vm.counter =0
+      },1500)
+    }
+  }
+})
+
+
+```
+
+* v-on:click ---> @click
+* v-bin:href --> :href 
+
+--- 
+
+#### Dinamik Still İşlemleri:
+
+```html
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<style>
+  .box {
+    width: 100px;
+    height: 100px;
+    background-color: gray;
+    display: inline-block;
+    margin-right: 5px;
+  }
+  .yellow {
+    background-color: yellow;
+  }
+</style>
+<div id='app'>
+  <div @click='attachedClass = !attachedClass' :class='{yellow : attachedClass}' class='box'></div>
+  <div class='box'></div>
+  <div class='box'></div>
+</div>
+```
+
+
+```javascript
+new Vue({
+  el: '#app',
+  data: {
+    attachedClass: false
   }
 })
 ```
