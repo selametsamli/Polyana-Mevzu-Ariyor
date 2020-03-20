@@ -69,7 +69,8 @@ new Vue({
 })
 ```
 
-* example
+
+
 
 ```html
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
@@ -271,3 +272,22 @@ new Vue({
   }
 })
 ```
+
+
+
+---
+## Components 
+
+<keep-alive>  --> componentlerin destroy olmamasını sağlar
+
+```html
+ <keep-alive>
+        <component :is="selectedComponent">
+          <h1 slot="heading">Güzel bir gün...</h1>
+          <p>Bu çok güzel bir anıydı..</p>
+        </component>
+</keep-alive
+
+
+```
+* example
