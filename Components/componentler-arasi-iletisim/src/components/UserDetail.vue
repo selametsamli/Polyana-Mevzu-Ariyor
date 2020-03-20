@@ -10,6 +10,8 @@
     </div>
 </template>
 <script>
+    import {eventBus} from '../main'
+
     export default {
         props: {
             // name: [String, Array]
@@ -27,6 +29,11 @@
             sendToParent() {
                 this.$emit('data', 'Child');
             }
+        },
+        created() {
+            eventBus.$on('ageWasEdited', (age) => {
+                this.age = age;
+            })
         }
     }
 </script>
