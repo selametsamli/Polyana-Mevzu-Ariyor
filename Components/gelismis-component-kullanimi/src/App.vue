@@ -7,11 +7,13 @@
       <buttun @click="selectedComponent = 'Author'" class="btn-sm btn btn-primary">appAuthor</buttun>
       <br><b></b>
       <p>{{selectedComponent}}</p>
-      <component :is="selectedComponent">
-        <h1 slot="heading">Güzel bir gün...</h1>
-        <p>Bu çok güzel bir anıydı..</p>
-      </component>
 
+      <keep-alive>
+        <component :is="selectedComponent">
+          <h1 slot="heading">Güzel bir gün...</h1>
+          <p>Bu çok güzel bir anıydı..</p>
+        </component>
+      </keep-alive>
     </div>
 
   </div>
