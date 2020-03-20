@@ -3,12 +3,25 @@
         <h3>Child Component 1</h3>
         <p>Ben User.vue isimli Parent Component'in içerisindeki bir Child componentim</p>
         <p> Kullanıcı adı {{name}}</p>
+        <p> Kullanıcı adı {{switchName()}}</p>
 
     </div>
 </template>
 <script>
     export default {
-        props: ['name']
+        props: {
+            // name: [String, Array]
+            name: {
+                type: String,
+                //required: true,
+                default: 'Lorem impsum'
+            }
+        },
+        methods: {
+            switchName() {
+                return this.name.split('').reverse().join('');
+            }
+        }
     }
 </script>
 <style scoped>
