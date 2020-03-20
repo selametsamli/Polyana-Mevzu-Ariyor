@@ -4,10 +4,11 @@
         <p>Burası parent component yani herşeyin import edildiği component :)</p>
         <button @click="changeName">Adımı Değiştir</button>
         <p>Child Component üzerinden gelen Veri : {{childData}}</p>
+        <p>Kullanıcı Yaşı {{age}}</p>
         <hr>
         <div class="row">
-            <app-user-detail @data="childData=$event" :name="title"></app-user-detail>
-            <app-user-edit></app-user-edit>
+            <app-user-detail :age="age" @data="childData=$event" :name="title"></app-user-detail>
+            <app-user-edit :age="age" @ageWasEdited='age =$event'></app-user-edit>
         </div>
     </div>
 </template>
@@ -24,6 +25,7 @@
             return {
                 title: 'Selo',
                 childData: '',
+                age: 25,
             }
         },
         methods: {
